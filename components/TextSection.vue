@@ -1,11 +1,43 @@
 <template>
   <div class="text-center py-8" :class="`${bgColorClass} ${textColorClass}`">
-    <p class="text-xl">{{ text }}</p>
+    <p class="text-4xl">{{ text }}</p>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+
+const getBgColorClass = (theme: string) => {
+  switch (theme) {
+    case 'YellowBlue': {
+      return 'bg-yellow-300'
+    }
+    case 'WhiteBlue': {
+      return 'bg-white'
+    }
+    case 'OrangeBlue': {
+      return 'bg-yellow-600'
+    }
+    default:
+      return 'bg-white'
+  }
+}
+
+const getColorClass = (theme: string) => {
+  switch (theme) {
+    case 'YellowBlue': {
+      return 'text-blue-700'
+    }
+    case 'WhiteBlue': {
+      return 'text-blue-700'
+    }
+    case 'OrangeBlue': {
+      return 'text-blue-700'
+    }
+    default:
+      return 'text-blue-700'
+  }
+}
 
 export default defineComponent({
   name: 'TextSection',
@@ -20,21 +52,10 @@ export default defineComponent({
     },
   },
   setup({ theme }) {
-    const bgColorClass = theme === 'YellowBlue' ? 'bg-blue-700' : 'bg-white'
-    const textColorClass =
-      theme === 'YellowBlue' ? 'text-yellow-300' : 'text-blue-700'
+    const bgColorClass = getBgColorClass(theme)
+    const textColorClass = getColorClass(theme)
 
     return { bgColorClass, textColorClass }
-  },
-  methods: {
-    getBgColor(theme: 'WhiteBlue' | 'YellowBlue'): string {
-      if (theme === 'WhiteBlue') return 'blue'
-      else return 'blue'
-    },
-    getColor(theme: 'WhiteBlue' | 'YellowBlue'): string {
-      if (theme === 'WhiteBlue') return 'white'
-      else return 'yellow'
-    },
   },
 })
 </script>

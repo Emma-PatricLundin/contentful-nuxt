@@ -5,10 +5,10 @@
       >back to startpage</nuxt-link
     >
     <div>
-      <TextSection
+      <Section
         v-for="section in page.sections"
         :key="section.id"
-        v-bind="section.fields"
+        :section="section"
       />
     </div>
   </div>
@@ -16,17 +16,17 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import TextSection from '~/components/TextSection.vue'
+import Section from '~/components/Section.vue'
 
 export default defineComponent({
   name: 'Page',
   components: {
-    TextSection,
+    Section,
   },
   async asyncData({ params, app }) {
     const slug = params.slug
     const page = await app.$contentfulApi.getPageBySlug(slug)
-    return { slug, page }
+    return { slug, page, pretty: JSON.stringify(page?.sections, undefined, 2) }
   },
 })
 </script>

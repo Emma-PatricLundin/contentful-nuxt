@@ -1,11 +1,17 @@
 import { Context } from '@nuxt/types'
-import * as contentful from 'contentful'
+import { createClient, Entry } from 'contentful'
 type env = Context['env']
+
+interface Section {
+  theme: string
+  text: string
+}
 
 interface PageType {
   tabTitle: string
   h1Title: string
   slug: string
+  sections: Entry<Section>[]
 }
 
 export default ($env: env) => {
@@ -14,7 +20,7 @@ export default ($env: env) => {
     accessToken: $env.CTF_CDA_ACCESS_TOKEN,
   }
 
-  const client = contentful.createClient(config)
+  const client = createClient(config)
 
   const getPageBySlug = async (slug: string) => {
     const pages = await client
