@@ -1,6 +1,11 @@
 import { NuxtConfig } from '@nuxt/types'
 import contentfulApi from './api/contentful'
-const contentfulJsonConfig = require('./.contentful.json')
+
+const contentfulJsonConfig = {
+  CTF_PAGE_TYPE_ID: process.env.CTF_PAGE_TYPE_ID || 'generalPage',
+  CTF_SPACE_ID: process.env.CTF_SPACE_ID || 'SPACE_ID',
+  CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN || 'ACCESS_TOKEN',
+}
 
 const contentfulClient = contentfulApi(contentfulJsonConfig)
 

@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate",
+    "dev": "sops exec-env contentful-nuxt-development.sops.yaml 'nuxt-ts'",
+    "build": "sops exec-env contentful-nuxt-development.sops.yaml 'nuxt-ts build'",
+    "start": "sops exec-env contentful-nuxt-development.sops.yaml 'nuxt-ts start'",
+    "generate": "sops exec-env contentful-nuxt-development.sops.yaml 'nuxt-ts generate'",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint": "npm run lint:js"
   },
